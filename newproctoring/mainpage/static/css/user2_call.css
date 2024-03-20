@@ -1,0 +1,74 @@
+#video {
+  position: fixed;
+  transform: scaleX(-1);
+  top: 5px;
+  left: 0.5%;
+  width: 300px;
+  height: 230px;
+}
+
+.pic {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 65%;
+  height: 100%;
+}
+
+.butt {
+  position: fixed;
+  bottom: 5px;
+  left: 2%;
+  width: 300;
+  height: 90;
+}
+
+
+#chat-window {
+    position: fixed;
+    bottom: 50px;
+    left: 0.5%;
+    width: 300px;
+    height: 520px;
+    background-color: white;
+    border: 1px solid gray;
+    overflow-y: scroll;
+}
+
+#chat-header {
+    background-color: gray;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+#chat-messages {
+    padding: 10px;
+}
+
+#chat-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid gray;
+}
+
+#chat-input {
+    position: fixed;
+    bottom: 5px;
+    flex: 1;
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid gray;
+}
+
+#chat-form button {
+    background-color: gray;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}

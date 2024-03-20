@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+
+
+<html lang="ru">
+<head>
+	<title>Видео чат</title>
+
+	<link rel="stylesheet" href="{% static 'css/account.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/teal.css' %}" />
+    <link rel="stylesheet" href="{% static 'scss/_custom.scss' %}" />
+    <link rel="stylesheet" href="{% static 'scss/_variables.scss' %}" />
+	<link rel="stylesheet" href="{% static 'css/user2_call.css' %}" />
+	<link rel="stylesheet" href="{% static 'js/user2_call.js' %}" />
+    <link rel="stylesheet" href="{% static 'js/scripts.js' %}" />
+	<link rel="stylesheet" href="{% static 'js/call.js' %}" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+
+<body>
+	<div id="task">
+		<a class="pic">
+                <img src="{% static 'images/work.jpg' %}">
+            </a>
+	</div>
+	<div id="video-stream">
+		<video class="video" id="video" width="640" height="480" autoplay></video>
+		<script>
+		  navigator.mediaDevices.getUserMedia({video: true})
+			.then(function(stream) {
+			  var video = document.getElementById("video");
+			  video.srcObject = stream;
+			  video.play();
+			})
+			.catch(function(err) {
+			  console.log("Ошибка при доступе к веб-камере: " + err);
+			});
+		</script>
+
+	</div>
+	<div id="chat-container">
+	  <div id="chat-window">
+			<div id="chat-header">
+				<h3>  Чат</h3>
+			</div>
+			<div id="chat-messages"></div>
+			<form id="chat-form">
+
+			</form>
+
+		</div>
+	</div>
+  <button type="submit" class="butt" href="/"> Завершить  пробный  прокторинг </button>
+</body>
+</html>

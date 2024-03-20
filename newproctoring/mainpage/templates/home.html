@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="ru">
+
+<head>
+
+   <title>домашняя страница</title>
+
+    <link rel="stylesheet" href="{% static 'css/teal.css' %}" />
+    <link rel="stylesheet" href="{% static 'scss/_custom.scss' %}" />
+    <link rel="stylesheet" href="{% static 'scss/_variables.scss' %}" />
+    <link rel="stylesheet" href="{% static 'js/scripts.js' %}" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+</head>
+
+   <body>
+      <div class="top">
+         <header>
+
+        <!--navigation-->
+        <nav class="navbar navbar-expand-md navbar-dark navbar-transparent fixed-top sticky-navigation" id="lambda-navbar">
+
+            <a class="navbar-logo">
+                <img src="{% static 'images/logo.png' %}" width="225" height="100" >
+            </a>
+
+            <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
+                    data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span data-feather="menu"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <!-- <a class="nav-link page-scroll" href="">Главная</a> -->
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="static/pdf/instructionforstudents.pdf" download>Инструкция</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="">Поддержка</a>
+                    </li>
+
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link page-scroll" href="{% url 'personalaccount' %}">{{ user.username }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <form action="{% url 'logout' %}" method="post">
+                                {% csrf_token %}
+                                <a class="nav-link page-scroll" href="{% url 'logout' %}?next={% url 'home' %}">Выход</a>
+                            </form>
+                             </li>
+
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link page-scroll" href="{% url 'signup' %}">Регистрация</a>
+                        </li>
+                    {% endif %}
+
+
+                </ul>
+                </ul>
+                </form>
+            </div>
+        </nav>
+
+        <!--hero header-->
+        <section class="py-7 py-md-0 bg-hero" id="home" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1)), url(static/images/photo1.jpg)">
+            <div class="container">
+
+                <div class="row vh-md-100">
+                    <div class="col-md-7 my-md-auto text-center text-md-left">
+                        <h1 class="display-3 text-white font-weight-bold">Пробный прокторинг!</h1>
+                        <p class="lead text-light my-4">Система прокторинга предназначена для контроля
+                            самостоятельности прохождения онлайн экзаменов или тестов в
+                            системах дистанционного обучения. Она верифицирует личность
+                            участника и осуществляет наблюдение в реальном времени для
+                            выявления возможных нарушений.</p>
+                        <a class="btn btn-primary page-scroll" href="{% url 'my_video' %}">Тестирование</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- services section -->
+        <section class="py-7 bg-light" >
+             <div class="container" >
+                <div class="row">
+                    <div class="col-md-7 col-sm-9 mx-auto text-center" >
+                        <h2 class="display-4 font-weight-bold" style="margin-top: 70px;">Что нужно для проведения прокторинга? </h2>
+
+                    </div>
+                </div>
+
+                <div class="row p-4 mt-5 bg-white raised-box rounded">
+                    <div class="col-md-4 col-sm-6 mb-5 text-center">
+                        <div class="icon-box">
+                            <div class="icon-box-inner small-xs text-primary">
+                                <img src="static/images/computer.png" width="64" height="64" >
+                            </div>
+                        </div>
+                        <h4 class="mt-2">Компьютер или </h4>
+                        <h4 class="mt-2">ноутбук с веб-камерой</h4>
+                        <p class="text-muted">Для проведения испытаний с прокторингом используется специальное программное обеспечение. Вам понадобится компьютер или ноутбук с операционной системой Windows, MacOS или Linux и веб-камера с микрофоном..</p>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-5 text-center">
+                        <div class="icon-box">
+                            <div class="icon-box-inner small-xs text-primary">
+                                <img src="static/images/browser.png" width="64" height="64" >
+                            </div>
+                        </div>
+                        <h4 class="mt-2">Веб-браузер </h4>
+                        <h4 class="mt-2">последней версии</h4>
+                        <p class="text-muted text-center">Система прокторинга работает в браузере Chrome, Edge, Яндекс.Браузер, Opera, Firefox или Safari. Нужно обновить веб-браузер на компьютере до последней версии. Устанавливать дополнительное программное обеспечение, расширения или плагины не требуется.</p>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-5 text-center">
+                        <div class="icon-box">
+                            <div class="icon-box-inner small-xs text-primary">
+                                <img src="static/images/passport.png" width="64" height="64" >
+                            </div>
+                        </div>
+                        <h4 class="mt-2">Удостоверяющий личность </h4>
+                        <h4 class="mt-2">документ с фотографией</h4>
+                        <p class="text-muted">Для подтверждения вашей личности может потребоваться фотография вашего удостоверяющего личность документа (паспорт), которую нужно будет сделать через веб-камеру или загрузить скан с компьютера в формате JPEG размером до 5 МБ.</p>
+                    </div>
+                    <div class="col-md-13 col-sm-6 mb-5 text-center my-text">
+                        <div class="icon-box">
+                            <div class="icon-box-inner small-xs text-primary">
+                                <img src="static/images/phone.png" width="64" height="64" >
+                            </div>
+                        </div>
+                        <h4 class="mt-2">Смартфон или планшет</h4>
+                        <p class="text-muted">Иногда может потребоваться подключить камеру вашего смартфона Android или iOS для лучшего обзора рабочего места и помещения. Для этого нужно отсканировать со смартфона QR-код, отображаемый на экране компьютера, а затем открыть в браузере на смартфоне ссылку, полученную по коду.</p>
+                    </div>
+                    <div class="col-md-13 col-sm-6 mb-5 text-center ">
+                        <div class="icon-box">
+                            <div class="icon-box-inner small-xs text-primary">
+                                <img src="static/images/wifi.png" width="64" height="64" >
+                            </div>
+                        </div>
+                        <h4 class="mt-2">Стабильный интернет</h4>
+                        <p class="text-muted">Испытания с прокторингом проводятся онлайн, поэтому на компьютере (и смартфоне при использовании второй камеры) должно быть стабильное интернет-подключение со скоростью не ниже 256 Кбит/с (в обе стороны).</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!--footer / contact-->
+        <footer class="py-6 bg-black" id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                         <div class="collapse navbar-collapse" id="navbarCollapse">
+
+                            <form class="form-inline">
+                                <a href="#signup" class="btn btn-outline-secondary btn-navbar page-scroll">Войти</a>
+                            </form>
+                        </div>
+                        <a class="navbar-logo">
+                            <img src="static/images/logo.png" width="225" height="100" >
+                        </a>
+                            <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item">
+                                        <p class="about">MEPHIproctoring - программа являющаяся прототипом прокторинг системы, разработанная для дальнейшей доработки и привращения ее в полноценную программу прокторинга.</p>
+                                        <ul class="list-inline social social-rounded social-sm">
+                                    </li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        </section>
+         </header>
+      </div>
+   </body>
+</html>

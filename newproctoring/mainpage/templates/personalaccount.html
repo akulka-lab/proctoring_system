@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+{% load static %}
+
+
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
+
+    <link rel="stylesheet" href="{% static 'css/account.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/teal.css' %}" />
+    <link rel="stylesheet" href="{% static 'scss/_custom.scss' %}" />
+    <link rel="stylesheet" href="{% static 'scss/_variables.scss' %}" />
+    <link rel="stylesheet" href="{% static 'js/scripts.js' %}" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+
+<body>
+<div class="top banner-container banner1">
+    <header>
+          <nav class="navbar navbar-expand-md navbar-dark navbar-transparent fixed-top sticky-navigation banner" id="lambda-navbar">
+
+            <a class="navbar-logo">
+                <img src="{% static 'images/logo.png' %}" width="225" height="100" >
+            </a>
+
+            <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
+                    data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span data-feather="menu"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="/">Главная</a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="">Инструкция</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="">Поддержка</a>
+                    </li>
+
+                    <ul class="navbar-nav ml-auto">
+                          <li class="nav-item">
+                              <form action="{% url 'logout' %}" method="post">
+                                  {% csrf_token %}
+
+                                  <a class="nav-link page-scroll" href="{% url 'logout' %}?next={% url 'home' %}">Выход</a>
+                              </form>
+                          </li>
+                    </ul>
+                </ul>
+                </form>
+            </div>
+        </nav>
+       </header>
+  </div>
+
+  <div class="container ">
+      <div class="profile-header">
+      <img src="{% static 'images/icon.png' %}" width="225" height="100" >
+      <h1>{{ user.username }}</h1>
+      </div>
+
+  <hr>
+  <h2>Информация о пользователе</h2>
+   <form method="post">
+     <div class="form-group">
+      <label for="exampleInputGroup">Группа</label>
+      <input class="form-control" id="exampleInputGroup" name="group" value="{{ user.group.name }}" readonly>
+    </div>
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email адрес</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value="{{ user.email }}" readonly>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputUsername">Имя пользователя</label>
+        <input type="text" class="form-control" id="exampleInputUsername" name="username" value="{{ user.username }}" readonly>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputFirstName">Имя</label>
+        <input type="text" class="form-control" id="exampleInputFirstName" name="first_name" value="{{ user.first_name }}" {% if not edit_mode %}readonly{% endif %}>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputLastName">Фамилия</label>
+        <input type="text" class="form-control" id="exampleInputLastName" name="last_name" value="{{ user.last_name }}" {% if not edit_mode %}readonly{% endif %}>
+      </div>
+      {% if not edit_mode %}
+      <button type="button" class="btn btn-primary" onclick="enableEdit()">Изменить</button>
+      {% else %}
+      <button type="submit" class="btn btn-primary">Сохранить</button>
+      {% endif %}
+    </form>
+  <hr>
+  <h2>Запланированные встречи</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Дата</th>
+        <th scope="col">Время</th>
+        <th scope="col">Участники</th>
+        <th scope="col">Комментарий</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>01.01.2022</td>
+        <td>14:00</td>
+        <td>Петров, Сидоров</td>
+        <td>Встреча для обсуждения новых проектов</td>
+      </tr>
+      <tr>
+        <td>02.02.2022</td>
+        <td>10:00</td>
+        <td>Иванов, Петров</td>
+        <td>Совещание по текущим проектам</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

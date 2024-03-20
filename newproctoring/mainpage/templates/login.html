@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="Iwidth=device-width, initial-scale=1.0">
+    <title>Регистрация и Авторизация</title>
+
+
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
+    <script src= "{% static 'js/signup.js' %}" defer></script>
+
+</head>
+
+<body>
+
+
+    <article class="container">
+        <div class="block">
+          <section class="block_item block-item">
+              <h2 class="block-item_title">У вас уже есть аккаунт?</h2>
+              <button class="block-item_btn signin-btn">Войти</button>
+          </section>
+          <section class="block_item block-item">
+              <h2 class="block-item_title">У вас нет аккаунта?</h2>
+              <button class="block-item_btn signup-btn">Зарегистрироваться</button>
+          </section>
+        </div>
+
+        <div class="form-box">
+
+            <form method="post" class="form form_signin">
+                <h3 class="form_title">Вход</h3>
+                <p>
+                    <input type="text" class="form_input" id="username" name="username" placeholder="Логин" required>
+                </p>
+                <p>
+                    <input type="password" class="form_input" id="password" name="password" placeholder="Пароль" required>
+                </p>
+                <p>
+                    <button type="submit" class="form_btn" href="{% url 'home' %}">Войти</button>
+                </p>
+                <p>
+                </p>
+                <h3 class="form_title"></h3>
+                <p>
+                    <a href="{% url 'home' %}" class="form_forgot">Восстановить пароль</a>
+                </p>
+            </form>
+
+
+           <form method="post" class="form form_signup">
+            <h3 class="form_title">Регистрация</h3>
+            <p>
+                <input type="text" name="username" class="form_input" placeholder="Логин">
+            </p>
+            <p>
+                <input type="email" name="email" class="form_input" placeholder="Почта">
+            </p>
+            <p>
+                <input type="password" name="password1" class="form_input" placeholder="Пароль">
+            </p>
+            <p>
+                <input type="password" name="password2" class="form_input" placeholder="Подтвердите Пароль">
+            </p>
+            <p>
+                <label for="group">Выберите группу:</label>
+                <select name="group" id="group">
+                    <option value="group1">Проктор</option>
+                    <option value="group2">Ученик</option>
+                </select>
+            </p>
+            <p>
+                <button type="submit" name="register_btn" class="form_btn form_btn_signup" >Зарегистрироваться</button>
+            </p>
+            <p>
+                <a href="#" class="form_forgot">Восстановить пароль</a>
+            </p>
+        </form>
+
+        </div>
+        {% if error_message %}
+            <p>{{ error_message }}</p>
+        {% endif %}
+
+
+    </article>
+
+
+</body>
+</html>
